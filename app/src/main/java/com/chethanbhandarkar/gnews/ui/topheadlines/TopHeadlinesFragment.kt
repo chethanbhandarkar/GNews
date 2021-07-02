@@ -1,40 +1,84 @@
 package com.chethanbhandarkar.gnews.ui.topheadlines
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.chethanbhandarkar.gnews.databinding.FragmentHomeBinding
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.chethanbhandarkar.gnews.R
+import com.chethanbhandarkar.gnews.databinding.FragmentTopheadlinesBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class TopHeadlinesFragment : Fragment() {
 
-    private lateinit var homeViewModel: TopHeadlinesViewModel
-    private var _binding: FragmentHomeBinding? = null
+    private  val topHeadlinesViewModel by viewModels<TopHeadlinesViewModel>()
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+    private var _binding: FragmentTopheadlinesBinding? = null
+
     private val binding get() = _binding!!
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        homeViewModel =
-            ViewModelProvider(this).get(TopHeadlinesViewModel::class.java)
-
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentTopheadlinesBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-
-        })
         return root
     }
+
+
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        setHasOptionsMenu(true)
+  val adapter=NewsPagingAdapter()
+        binding.apply {
+            rvTopheadlines.setHasFixedSize(true)
+            rvTopheadlines.adapter=adapter
+
+        }
+        topHeadlinesViewModel.news.observe(viewLifecycleOwner, Observer {
+          adapter.submitData(viewLifecycleOwner.lifecycle,it)
+
+        })
+
+    }
+    override fun onCreateOptionsMenu(menu: Menu,inflater:MenuInflater) {
+        super.onCreateOptionsMenu(menu,inflater)
+        inflater.inflate(R.menu.search_bar_menu,menu)
+
+
+
+        val search=menu.findItem(R.id.nav_search)
+        val searchView=search?.actionView as SearchView
+        searchView.queryHint=" Search News"
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+
+                if(query!=null)
+                {   binding.rvTopheadlines.scrollToPosition(0)
+                    topHeadlinesViewModel.getTopHeadlines(query)
+                    searchView.clearFocus()
+
+                }
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return true
+            }
+        })
+
+    }
+
+
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()

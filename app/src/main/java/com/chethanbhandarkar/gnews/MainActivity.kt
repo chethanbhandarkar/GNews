@@ -2,6 +2,7 @@ package com.chethanbhandarkar.gnews
 
 import android.os.Bundle
 import android.view.Menu
+import androidx.activity.viewModels
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
@@ -37,24 +38,5 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-       menuInflater.inflate(R.menu.search_bar_menu,menu)
 
-
-
-        val search=menu?.findItem(R.id.nav_search)
-        val searchView=search?.actionView as SearchView
-        searchView.queryHint=" Search News"
-
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                TODO("Not yet implemented")
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                TODO("Not yet implemented")
-            }
-        })
-        return super.onCreateOptionsMenu(menu)
-    }
 }

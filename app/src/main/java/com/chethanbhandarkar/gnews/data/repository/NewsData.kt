@@ -14,7 +14,7 @@ data class NewsData (
     val totalResults: Int = 0,
 
     @SerializedName("articles")
-    val articles: List<Articles> = emptyList()
+    val articles: List<Articles>
 ) :Parcelable{
     @Parcelize
     data class Articles(
@@ -44,14 +44,18 @@ data class NewsData (
         val content: String? = null
 
     ):Parcelable
+
+    {
         @Parcelize
         data class Source(
-        @SerializedName("id")
-        val id: String? = null,
+            @SerializedName("id")
+            val id: String? = null,
 
-        @SerializedName("name")
-        val name: String? = null
-    ):Parcelable
+            @SerializedName("name")
+            val name: String? = null
+        ):Parcelable
+    }
+
 
 
 

@@ -1,7 +1,9 @@
 package com.chethanbhandarkar.gnews.data.repository.remote
 
+import android.util.Log
 import com.chethanbhandarkar.gnews.BuildConfig
 import com.chethanbhandarkar.gnews.data.repository.NewsData
+import com.chethanbhandarkar.gnews.data.repository.pagination.NewsResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -15,11 +17,26 @@ interface GoogleNewsApiService {
     }
 
     @GET("v2/top-headlines")
-    fun getTopHeadlines(@Query("source") source:String="google-news",
+    suspend fun getTopHeadlines(@Query("source") source:String="google-news",
                                 @Query("page")page:Int,
                                 @Query("pageSize")pageSize:Int,
                                 @Query("apiKey") apiKey:String= CLIENT_ID)
     :NewsData
+
+
+    @GET("v2/top-headlines")
+
+    suspend fun getTopHeadlinesSearch(@Query("source") source:String="google-news",
+                                @Query("page")page:Int,
+                                @Query("pageSize")pageSize:Int,
+                                @Query("apiKey") apiKey:String= CLIENT_ID,
+                                @Query("q")query:String
+    ):NewsData
+
+
+
+
+
 
 
 }

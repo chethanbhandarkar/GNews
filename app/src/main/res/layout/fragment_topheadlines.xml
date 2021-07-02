@@ -7,7 +7,9 @@
     tools:context=".ui.topheadlines.TopHeadlinesFragment">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_topheadlines"
         android:layout_width="0dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
