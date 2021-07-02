@@ -7,14 +7,30 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.chethanbhandarkar.gnews.ui.home.HomeFragment"
+        android:name="com.chethanbhandarkar.gnews.ui.topheadlines.TopHeadlinesFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_newsDetailsFragment"
+            app:destination="@id/newsDetailsFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_dashboard"
+            app:destination="@id/navigation_dashboard" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.chethanbhandarkar.gnews.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_navigation_dashboard_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/newsDetailsFragment"
+        android:name="com.chethanbhandarkar.gnews.ui.newsdetails.NewsDetailsFragment"
+        android:label="news_details_fragment"
+        tools:layout="@layout/news_details_fragment" />
 
 </navigation>
