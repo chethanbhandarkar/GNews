@@ -26,7 +26,7 @@ interface GoogleNewsApiService {
 
     @GET("v2/top-headlines")
 
-    suspend fun getTopHeadlinesSearch(@Query("source") source:String="google-news",
+    suspend fun getTopHeadlinesSearch(@Query("sources") sources:String="google-news",
                                 @Query("page")page:Int,
                                 @Query("pageSize")pageSize:Int,
                                 @Query("apiKey") apiKey:String= CLIENT_ID,

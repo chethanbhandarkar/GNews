@@ -4,75 +4,57 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/each_data_cardview"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:weightSum="1">
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.6"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
             android:orientation="vertical"
+            android:padding="4dp"
             android:weightSum="1">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/tv_title"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.8"
-                android:orientation="vertical"
-                android:padding="20dp">
-
-                <TextView
-                    android:id="@+id/tv_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.6"
-                    android:fontFamily="@font/poppins_bold"
-                    android:maxLines="5"
-                    android:text="Last US troops set to leave Bagram Air Base Friday, as US withdrawal from Afghanistan Last US troops set to leave Bagram Air Base Friday, as US withdrawal from Afghanistan nears completionnears completion"
-                    android:textColor="#000000" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="0.2"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/tv_timepublished"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:fontFamily="@font/poppins_bold"
-                    android:text="33 min ago"
-                    android:textSize="10sp" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.4"
-            android:gravity="center|top"
-            android:orientation="vertical">
+                android:layout_weight="0.3"
+                android:ellipsize="end"
+                android:fontFamily="@font/lato_bold"
+                android:gravity="center|left"
+                android:lineSpacingExtra="8sp"
+                android:maxLines="3"
+                android:text="Last US troops set to leave Bagram Air Base Friday, as US withdrawal from Afghanistan Last US troops set to leave Bagram Air Base Friday, as US withdrawal from Afghanistan nears completionnears completion"
+                android:textColor="#3E3737"
+                android:textSize="24sp" />
 
             <ImageView
                 android:id="@+id/iv_newsimage"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:padding="20dp"
+                android:layout_height="0dp"
+                android:layout_weight="0.6"
+                android:padding="3dp"
                 android:scaleType="fitXY"
                 tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+            <TextView
+                android:id="@+id/tv_timepublished"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.1"
+                android:ellipsize="end"
+                android:fontFamily="@font/poppins_bold"
+                android:gravity="center|top|left"
+                android:paddingLeft="3dp"
+                android:text="33 min ago"
+                android:textSize="10sp" />
         </LinearLayout>
 
     </LinearLayout>

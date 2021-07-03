@@ -31,6 +31,6 @@
         android:id="@+id/newsDetailsFragment"
         android:name="com.chethanbhandarkar.gnews.ui.newsdetails.NewsDetailsFragment"
         android:label="news_details_fragment"
-        tools:layout="@layout/news_details_fragment" />
+        tools:layout="@layout/fragment_newsdetails" />
 
 </navigation>

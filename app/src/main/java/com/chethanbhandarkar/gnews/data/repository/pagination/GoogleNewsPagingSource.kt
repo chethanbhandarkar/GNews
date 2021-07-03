@@ -27,10 +27,6 @@ class GoogleNewsPagingSource (
          val queryresponse= googleNewsService.getTopHeadlinesSearch(page=pagePosition,pageSize = params.loadSize,query = query)
 
 
-        for(i in 0..queryresponse.articles.size-1)
-        {
-            Log.d("CHECKS Values",queryresponse.articles[i].title.toString())
-        }
          val topHeadlines=queryresponse
 
          LoadResult.Page(

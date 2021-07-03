@@ -1,7 +1,11 @@
 package com.chethanbhandarkar.gnews.ui.topheadlines
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.*
+import android.widget.ImageView
+import android.widget.Toolbar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -23,7 +27,12 @@ class TopHeadlinesFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
+
+
         _binding = FragmentTopheadlinesBinding.inflate(inflater, container, false)
+
+        val toolbar: androidx.appcompat.widget.Toolbar=binding.toolBar
+        (requireActivity() as AppCompatActivity).setSupportActionBar(toolbar)
         val root: View = binding.root
         return root
     }
