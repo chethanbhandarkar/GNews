@@ -12,7 +12,7 @@ import java.io.IOException
 private const val STARTING_PAGE_INDEX=1
 class GoogleNewsPagingSource (
     private val googleNewsService:GoogleNewsApiService,
-    private val query:String
+    private val query:String?=null
     ): PagingSource<Int,NewsData.Articles>()
 {
 
@@ -23,11 +23,23 @@ class GoogleNewsPagingSource (
         Log.d("CHECKS pp",pagePosition.toString())
 
      return try {
+         lateinit var queryResponse:NewsData
+         Log.d("checks null",query.isNullOrEmpty().toString())
+         if(query.isNullOrEmpty())
+         {
+             queryResponse= googleNewsService.getTopHeadlines(page=pagePosition,pageSize = params.loadSize)
+             Log.d("checks","normalsearch")
+         }
+         else{
+             queryResponse= googleNewsService.getTopHeadlinesSearch(page=pagePosition,pageSize = params.loadSize,query = query)
+             Log.d("checks","querysearch")
 
-         val queryresponse= googleNewsService.getTopHeadlinesSearch(page=pagePosition,pageSize = params.loadSize,query = query)
+         }
 
 
-         val topHeadlines=queryresponse
+
+         val topHeadlines=queryResponse
+         Log.d("checks TQ",topHeadlines.articles.size.toString())
 
          LoadResult.Page(
              data=topHeadlines.articles,

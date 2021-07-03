@@ -12,12 +12,13 @@ import javax.inject.Singleton
 @Singleton
 class GoogleNewsRepository @Inject constructor(private val googleNewsApi:GoogleNewsApiService){
 
-    fun getSearchResults(query:String)=
+    fun getSearchResults(query:String?)=
         Pager(
             config= PagingConfig(
-                pageSize = 5,
+                pageSize = 10,
                 maxSize = 100,
-                enablePlaceholders = false
+                enablePlaceholders = false,
+                initialLoadSize = 10
             ),
             pagingSourceFactory = {
 

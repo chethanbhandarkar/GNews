@@ -35,7 +35,7 @@ class TopHeadlinesViewModel @ViewModelInject constructor(private val repository:
 
 
     companion object{
-        private val DEFAULT_QUERY:String="the"
+        private val DEFAULT_QUERY:String?=null
     }
 
 
