@@ -26,13 +26,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.3"
+                android:autoText="true"
                 android:ellipsize="end"
                 android:fontFamily="@font/lato_bold"
                 android:gravity="center|left"
                 android:lineSpacingExtra="8sp"
                 android:maxLines="3"
                 android:text="Last US troops set to leave Bagram Air Base Friday, as US withdrawal from Afghanistan Last US troops set to leave Bagram Air Base Friday, as US withdrawal from Afghanistan nears completionnears completion"
-                android:textColor="#3E3737"
                 android:textSize="24sp" />
 
             <ImageView
@@ -50,11 +50,11 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.1"
                 android:ellipsize="end"
-                android:fontFamily="@font/poppins_bold"
-                android:gravity="center|top|left"
+                android:fontFamily="@font/lato_bold"
+                android:gravity="center|left"
                 android:paddingLeft="3dp"
                 android:text="33 min ago"
-                android:textSize="10sp" />
+                android:textSize="14sp" />
         </LinearLayout>
 
     </LinearLayout>

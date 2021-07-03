@@ -40,34 +40,61 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@tools:sample/backgrounds/scenic" />
 
+
             <TextView
                 android:id="@+id/tv_detailstitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/lato_bold"
+                android:fontFamily="@font/lato_black"
                 android:lineSpacingExtra="3sp"
                 android:padding="15dp"
-                android:text="Here’s what we know about the 737 cargHere’s what we know about the 737 cargo plane that crashed off OahuoHere’s what we know about the 737 cargo plane that crashed off Oahuplane that crashed off Oahu"
-                android:textColor="#000000"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toTopOf="@+id/tv_detailsdescription"
+                android:text="At least 19 missing as mudslide west of Tokyo hits houses"
+                android:textSize="22sp"
+                app:layout_constraintBottom_toTopOf="@+id/tv_author"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/iv_detailsimage" />
 
+            <TextView
+                android:id="@+id/tv_author"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lato"
+                android:paddingLeft="15dp"
+                android:text="Author: Chethan"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@id/tv_detailsdescription"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_detailstitle" />
 
             <TextView
                 android:id="@+id/tv_detailsdescription"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/lato_bold"
+                android:lineSpacingExtra="3sp"
+                android:padding="15dp"
+                android:text="TOKYO (AP) — A powerful mudslide carrying a deluge of black water and debris crashed into rows of houses in a town west of Tokyo following heavy rains on Saturday, leaving at least 19 people missing, officials said"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@id/tv_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_author" />
+
+            <TextView
+                android:id="@+id/tv_content"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:fontFamily="@font/lato"
                 android:lineSpacingExtra="3sp"
                 android:padding="15dp"
-                android:text="Peter Forman, an aviation expert in Hawaii, described the Boeing 737-200 as “reliable” and said a crash involving the loss of both Peter Forman, an aviation expert in Hawaii, described the Boeing 737-200 as “reliable” and said a crash involving the loss of both engines is “very, very rPeter Forman, an aviation expert in Hawaii, described the Boeing 737-200 as “reliable” and said a crash involving the loss of both Peter Forman, an aviation expert in Hawaii, described the Boeing 737-200 as “reliable” and said a crash involving the loss of both engines is “very, very rareengines is “very, very Peter Forman, an aviation expert in Hawaii, described the Boeing 737-200 as “reliable” and said a crash involving the loss of both Peter Forman, an aviation expert in Hawaii, described the Boeing 737-200 as “reliable” and said a crash involving the loss of both engines is “very, very rareengines is “verPeter Forman, an aviation expert in Hawaii, described the Boeing 737-200 as “reliable” and said a crash involving the loss of both Peter Forman, an aviation expert in Hawaii, described the Boeing 737-200 as “reliable” and said a crash involving the loss of both engines is “very, very rareengines is “very, very rarey, very rare is “very, very rare"
+                android:text="TOKYO (AP) — A powerful mudslide carrying a deluge of black water and debris crashed into rows of houses in a town west of Tokyo following heavy rains on Saturday, leaving at least 19 people missing, officTOKYO (AP) — A powerful mudslide carrying a deluge of black water and debris crashed into rows of houses in a town west of Tokyo following heavy rains on Saturday, leaving at least 19 people missing, officials saidials said"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_detailstitle" />
+
+                app:layout_constraintTop_toBottomOf="@id/tv_detailsdescription" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

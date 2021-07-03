@@ -15,6 +15,7 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.chethanbhandarkar.gnews.R
 import com.chethanbhandarkar.gnews.databinding.FragmentNewsdetailsBinding
+import com.chethanbhandarkar.gnews.utils.ApplicationUtil
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class NewsDetailsFragment : Fragment() {
@@ -48,6 +49,8 @@ class NewsDetailsFragment : Fragment() {
 
             tvDetailstitle.text=newsArticle.title
             tvDetailsdescription.text=newsArticle.description
+            tvAuthor.text="Author: ".plus(newsArticle.author.toString())
+            tvContent.text=newsArticle.content
             Glide.with(this@NewsDetailsFragment)
                 .load(newsArticle.urlToImage)
                 .centerCrop()

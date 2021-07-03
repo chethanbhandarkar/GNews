@@ -1,8 +1,10 @@
 package com.chethanbhandarkar.gnews.ui.topheadlines
 
+import android.os.Build
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -11,6 +13,9 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.chethanbhandarkar.gnews.R
 import com.chethanbhandarkar.gnews.data.repository.NewsData
 import com.chethanbhandarkar.gnews.databinding.EachNewsdataBinding
+import com.chethanbhandarkar.gnews.utils.ApplicationUtil
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 
 class NewsPagingAdapter(private val listener:OnItemClickListener):PagingDataAdapter<NewsData.Articles,NewsPagingAdapter.NewsViewHolder >(NEWS_COMPARATOR) {
@@ -22,6 +27,7 @@ class NewsPagingAdapter(private val listener:OnItemClickListener):PagingDataAdap
         return NewsViewHolder(binding)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
         val currentItem=getItem(position)
        if(currentItem!=null)
@@ -52,11 +58,12 @@ class NewsPagingAdapter(private val listener:OnItemClickListener):PagingDataAdap
 
             }
         }
+        @RequiresApi(Build.VERSION_CODES.O)
         fun bind(news: NewsData.Articles) {
 
             binding.apply {
                tvTitle.text = news.title
-               tvTimepublished.text = news.publishedAt
+               tvTimepublished.text = "Published at: ".plus(ApplicationUtil.convertDate(news.publishedAt.toString()))
                 Glide.with(itemView)
                  //   .load("https://cdn.cnn.com/cnnnext/dam/assets/210701232124-bagram-air-base-afghanistan-0625-super-tease.jpg")
                     .load(news.urlToImage)

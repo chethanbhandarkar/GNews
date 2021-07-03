@@ -27,6 +27,7 @@ class TopHeadlinesFragment : Fragment() ,NewsPagingAdapter.OnItemClickListener{
 
     private val binding get() = _binding!!
 
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
 
@@ -46,10 +47,19 @@ class TopHeadlinesFragment : Fragment() ,NewsPagingAdapter.OnItemClickListener{
         super.onViewCreated(view, savedInstanceState)
 
         setHasOptionsMenu(true)
-  val adapter=NewsPagingAdapter(this)
+        val adapter=NewsPagingAdapter(this)
+
         binding.apply {
             rvTopheadlines.setHasFixedSize(true)
-            rvTopheadlines.adapter=adapter
+            rvTopheadlines.adapter=adapter.withLoadStateHeaderAndFooter(
+
+                header = LoadingStateAdapter{
+                    adapter.retry()
+                },
+                footer = LoadingStateAdapter{
+                    adapter.retry()
+                },
+            )
 
         }
         topHeadlinesViewModel.news.observe(viewLifecycleOwner, Observer {
