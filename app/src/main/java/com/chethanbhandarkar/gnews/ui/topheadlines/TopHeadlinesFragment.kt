@@ -11,13 +11,15 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chethanbhandarkar.gnews.R
+import com.chethanbhandarkar.gnews.data.repository.NewsData
 import com.chethanbhandarkar.gnews.databinding.FragmentTopheadlinesBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class TopHeadlinesFragment : Fragment() {
+class TopHeadlinesFragment : Fragment() ,NewsPagingAdapter.OnItemClickListener{
 
     private  val topHeadlinesViewModel by viewModels<TopHeadlinesViewModel>()
 
@@ -44,7 +46,7 @@ class TopHeadlinesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setHasOptionsMenu(true)
-  val adapter=NewsPagingAdapter()
+  val adapter=NewsPagingAdapter(this)
         binding.apply {
             rvTopheadlines.setHasFixedSize(true)
             rvTopheadlines.adapter=adapter
@@ -54,6 +56,12 @@ class TopHeadlinesFragment : Fragment() {
           adapter.submitData(viewLifecycleOwner.lifecycle,it)
 
         })
+
+    }
+
+    override fun onItemClick(news: NewsData.Articles) {
+        val action=TopHeadlinesFragmentDirections.actionNavigationHomeToNewsDetailsFragment(news)
+        findNavController().navigate(action)
 
     }
     override fun onCreateOptionsMenu(menu: Menu,inflater:MenuInflater) {
@@ -93,4 +101,6 @@ class TopHeadlinesFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+
 }

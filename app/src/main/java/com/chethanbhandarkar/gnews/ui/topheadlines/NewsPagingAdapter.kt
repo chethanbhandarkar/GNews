@@ -13,7 +13,7 @@ import com.chethanbhandarkar.gnews.data.repository.NewsData
 import com.chethanbhandarkar.gnews.databinding.EachNewsdataBinding
 
 
-class NewsPagingAdapter:PagingDataAdapter<NewsData.Articles,NewsPagingAdapter.NewsViewHolder >(NEWS_COMPARATOR) {
+class NewsPagingAdapter(private val listener:OnItemClickListener):PagingDataAdapter<NewsData.Articles,NewsPagingAdapter.NewsViewHolder >(NEWS_COMPARATOR) {
 
 
 
@@ -31,9 +31,27 @@ class NewsPagingAdapter:PagingDataAdapter<NewsData.Articles,NewsPagingAdapter.Ne
 
 
     }
-    class NewsViewHolder(private val binding: EachNewsdataBinding) :
+    inner class NewsViewHolder(private val binding: EachNewsdataBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+
+
+        init{
+
+            binding.root.setOnClickListener{
+                val position=bindingAdapterPosition
+                if(position!=RecyclerView.NO_POSITION)
+                {
+                    val item=getItem(position)
+                    if(item!=null)
+                    {
+                        listener.onItemClick(item)
+                    }
+
+                }
+
+            }
+        }
         fun bind(news: NewsData.Articles) {
 
             binding.apply {
@@ -53,7 +71,9 @@ class NewsPagingAdapter:PagingDataAdapter<NewsData.Articles,NewsPagingAdapter.Ne
         }
     }
 
-
+    interface OnItemClickListener{
+        fun onItemClick(news:NewsData.Articles)
+    }
 
     companion object{
 

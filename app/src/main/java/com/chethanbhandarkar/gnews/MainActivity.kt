@@ -2,6 +2,7 @@ package com.chethanbhandarkar.gnews
 
 import android.os.Bundle
 import android.view.Menu
+import android.view.View
 import androidx.activity.viewModels
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -36,6 +37,15 @@ class MainActivity : AppCompatActivity() {
         )
        // setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when(destination.id)
+            {
+                R.id.newsDetailsFragment->navView.visibility= View.GONE
+                R.id.navigation_home->navView.visibility=View.VISIBLE
+                else->navView.visibility=View.VISIBLE
+            }
+        }
+
     }
 
 

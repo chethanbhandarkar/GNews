@@ -1,30 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.newsdetails.NewsDetailsFragment">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-
-
-
-
-        </LinearLayout>
-
-
-
-    </ScrollView>
     <ProgressBar
+        android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"></ProgressBar>
-</FrameLayout>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></ProgressBar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_detailsimage"
+                android:layout_width="0dp"
+                android:layout_height="279dp"
+                android:scaleType="fitXY"
+                app:layout_constraintBottom_toTopOf="@id/tv_detailstitle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/backgrounds/scenic" />
+
+            <TextView
+                android:id="@+id/tv_detailstitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lato_bold"
+                android:lineSpacingExtra="3sp"
+                android:padding="15dp"
+                android:text="Here’s what we know about the 737 cargHere’s what we know about the 737 cargo plane that crashed off OahuoHere’s what we know about the 737 cargo plane that crashed off Oahuplane that crashed off Oahu"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/tv_detailsdescription"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_detailsimage" />
+
+
+            <TextView
+                android:id="@+id/tv_detailsdescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lato"
+                android:lineSpacingExtra="3sp"
+                android:padding="15dp"
+                android:text="Peter Forman, an aviation expert in Hawaii, described the Boeing 737-200 as “reliable” and said a crash involving the loss of both Peter Forman, an aviation expert in Hawaii, described the Boeing 737-200 as “reliable” and said a crash involving the loss of both engines is “very, very rPeter Forman, an aviation expert in Hawaii, described the Boeing 737-200 as “reliable” and said a crash involving the loss of both Peter Forman, an aviation expert in Hawaii, described the Boeing 737-200 as “reliable” and said a crash involving the loss of both engines is “very, very rareengines is “very, very Peter Forman, an aviation expert in Hawaii, described the Boeing 737-200 as “reliable” and said a crash involving the loss of both Peter Forman, an aviation expert in Hawaii, described the Boeing 737-200 as “reliable” and said a crash involving the loss of both engines is “very, very rareengines is “verPeter Forman, an aviation expert in Hawaii, described the Boeing 737-200 as “reliable” and said a crash involving the loss of both Peter Forman, an aviation expert in Hawaii, described the Boeing 737-200 as “reliable” and said a crash involving the loss of both engines is “very, very rareengines is “very, very rarey, very rare is “very, very rare"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_detailstitle" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

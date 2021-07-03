@@ -31,6 +31,13 @@
         android:id="@+id/newsDetailsFragment"
         android:name="com.chethanbhandarkar.gnews.ui.newsdetails.NewsDetailsFragment"
         android:label="news_details_fragment"
-        tools:layout="@layout/fragment_newsdetails" />
+        tools:layout="@layout/fragment_newsdetails" >
+        <action
+            android:id="@+id/action_newsDetailsFragment_self"
+            app:destination="@id/newsDetailsFragment" />
+        <argument
+            android:name="newsArticle"
+            app:argType="com.chethanbhandarkar.gnews.data.repository.NewsData$Articles" />
+    </fragment>
 
 </navigation>
