@@ -6,11 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".ui.dashboard.DashboardFragment">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="141dp"
-        tools:layout_editor_absoluteY="98dp"
-        tools:src="@tools:sample/backgrounds/scenic" />
+
+
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/underconstruction_lottie"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/underconstruction" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

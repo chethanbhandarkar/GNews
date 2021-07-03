@@ -9,17 +9,17 @@ import com.chethanbhandarkar.gnews.MainActivity
 import com.chethanbhandarkar.gnews.R
 
 class SplashScreenActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash_screen)
+	override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
+		setContentView(R.layout.activity_splash_screen)
 
-        Handler(Looper.getMainLooper()).postDelayed(
-            {
-                val intent=Intent(this,MainActivity::class.java)
-                startActivity(intent)
-                finish()
+		Handler(Looper.getMainLooper()).postDelayed(
+			{
+				val intent = Intent(this, MainActivity::class.java)
+				startActivity(intent)
+				finish()
+			}, 1000
+		)
 
-            },1000)
-
-    }
+	}
 }

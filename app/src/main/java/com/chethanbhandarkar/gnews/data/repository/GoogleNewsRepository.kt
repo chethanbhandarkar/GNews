@@ -1,5 +1,6 @@
 package com.chethanbhandarkar.gnews.data.repository
 
+import android.util.Log
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
@@ -10,25 +11,18 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class GoogleNewsRepository @Inject constructor(private val googleNewsApi:GoogleNewsApiService){
-
-    fun getSearchResults(query:String?)=
-        Pager(
-            config= PagingConfig(
-                pageSize = 10,
-                maxSize = 100,
-                enablePlaceholders = false,
-                initialLoadSize = 10
-            ),
-            pagingSourceFactory = {
-
-
-                    GoogleNewsPagingSource(googleNewsApi,query)
-
-            }
-
-        ).liveData
-
-
+class GoogleNewsRepository @Inject constructor(private val googleNewsApi: GoogleNewsApiService) {
+	fun getSearchResults(query: String?) =
+		Pager(
+			config = PagingConfig(
+				pageSize = 10,
+				maxSize = 100,
+				enablePlaceholders = false,
+				initialLoadSize = 10
+			),
+			pagingSourceFactory = {
+				GoogleNewsPagingSource(googleNewsApi, query)
+			}
+		).liveData
 
 }

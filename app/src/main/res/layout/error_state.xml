@@ -11,13 +11,23 @@
         android:id="@+id/progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/error_lottie"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/nosearchresults" />
+
     <TextView
         android:id="@+id/tv_error"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Results Could Not Be Loaded">
-
-    </TextView>
+        android:fontFamily="@font/lato_bold"
+        android:text="Oops! Results Could Not Be Loaded"
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/btn_retry"

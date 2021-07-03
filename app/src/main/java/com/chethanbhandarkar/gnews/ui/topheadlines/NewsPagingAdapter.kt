@@ -1,7 +1,6 @@
 package com.chethanbhandarkar.gnews.ui.topheadlines
 
 import android.os.Build
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
@@ -14,95 +13,76 @@ import com.chethanbhandarkar.gnews.R
 import com.chethanbhandarkar.gnews.data.repository.NewsData
 import com.chethanbhandarkar.gnews.databinding.EachNewsdataBinding
 import com.chethanbhandarkar.gnews.utils.ApplicationUtil
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 
+class NewsPagingAdapter(private val listener: OnItemClickListener) :
+	PagingDataAdapter<NewsData.Articles, NewsPagingAdapter.NewsViewHolder>(NEWS_COMPARATOR) {
+	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
+		val binding =
+			EachNewsdataBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+		return NewsViewHolder(binding)
+	}
 
-class NewsPagingAdapter(private val listener:OnItemClickListener):PagingDataAdapter<NewsData.Articles,NewsPagingAdapter.NewsViewHolder >(NEWS_COMPARATOR) {
+	@RequiresApi(Build.VERSION_CODES.O)
+	override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
+		val currentItem = getItem(position)
+		if (currentItem != null) {
+			holder.bind(currentItem)
+		}
 
+	}
 
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
-        val binding=EachNewsdataBinding.inflate(LayoutInflater.from(parent.context),parent,false)
-        return NewsViewHolder(binding)
-    }
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
-        val currentItem=getItem(position)
-       if(currentItem!=null)
-       {
-           holder.bind(currentItem)
-       }
-
-
-    }
-    inner class NewsViewHolder(private val binding: EachNewsdataBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+	inner class NewsViewHolder(private val binding: EachNewsdataBinding) :
+		RecyclerView.ViewHolder(binding.root) {
 
 
 
-        init{
+		init {
+			binding.root.setOnClickListener {
+				val position = bindingAdapterPosition
+				if (position != RecyclerView.NO_POSITION) {
+					val item = getItem(position)
+					if (item != null) {
+						listener.onItemClick(item)
+					}
 
-            binding.root.setOnClickListener{
-                val position=bindingAdapterPosition
-                if(position!=RecyclerView.NO_POSITION)
-                {
-                    val item=getItem(position)
-                    if(item!=null)
-                    {
-                        listener.onItemClick(item)
-                    }
+				}
+			}
+		}
 
-                }
+		@RequiresApi(Build.VERSION_CODES.O)
+		fun bind(news: NewsData.Articles) {
+			binding.apply {
+				tvTitle.text = news.title
+				tvTimepublished.text =
+					"Published at: ".plus(ApplicationUtil.convertDate(news.publishedAt.toString()))
+				Glide.with(itemView)
+					.load(news.urlToImage)
+					.centerCrop()
+					.transition(DrawableTransitionOptions.withCrossFade())
+					.error(R.drawable.ic_launcher_background)
+					.into(ivNewsimage)
+			}
 
-            }
-        }
-        @RequiresApi(Build.VERSION_CODES.O)
-        fun bind(news: NewsData.Articles) {
+		}
+	}
 
-            binding.apply {
-               tvTitle.text = news.title
-               tvTimepublished.text = "Published at: ".plus(ApplicationUtil.convertDate(news.publishedAt.toString()))
-                Glide.with(itemView)
-                 //   .load("https://cdn.cnn.com/cnnnext/dam/assets/210701232124-bagram-air-base-afghanistan-0625-super-tease.jpg")
-                    .load(news.urlToImage)
-                    .centerCrop()
-                    .transition(DrawableTransitionOptions.withCrossFade())
-                    .error(R.drawable.ic_launcher_background)
-                    .into(ivNewsimage)
+	interface OnItemClickListener {
+		fun onItemClick(news: NewsData.Articles)
+	}
 
+	companion object {
+		private val NEWS_COMPARATOR = object : DiffUtil.ItemCallback<NewsData.Articles>() {
+			override fun areItemsTheSame(
+				oldItem: NewsData.Articles,
+				newItem: NewsData.Articles
+			) = oldItem.url == newItem.url
 
-            }
+			override fun areContentsTheSame(
+				oldItem: NewsData.Articles,
+				newItem: NewsData.Articles
+			) = oldItem == newItem
 
-        }
-    }
-
-    interface OnItemClickListener{
-        fun onItemClick(news:NewsData.Articles)
-    }
-
-    companion object{
-
-        private val NEWS_COMPARATOR=object:DiffUtil.ItemCallback<NewsData.Articles>(){
-
-
-            override fun areItemsTheSame(
-                oldItem: NewsData.Articles,
-                newItem: NewsData.Articles
-            )=oldItem.url==newItem.url
-
-            override fun areContentsTheSame(
-                oldItem: NewsData.Articles,
-                newItem: NewsData.Articles
-            )=oldItem==newItem
-
-        }
-            }
-
-
-
-
-
+		}
+	}
 
 }

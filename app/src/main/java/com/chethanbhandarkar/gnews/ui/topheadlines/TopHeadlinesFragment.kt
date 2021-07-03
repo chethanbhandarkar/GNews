@@ -1,98 +1,117 @@
 package com.chethanbhandarkar.gnews.ui.topheadlines
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.*
-import android.widget.ImageView
-import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.chethanbhandarkar.gnews.R
 import com.chethanbhandarkar.gnews.data.repository.NewsData
 import com.chethanbhandarkar.gnews.databinding.FragmentTopheadlinesBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class TopHeadlinesFragment : Fragment() ,NewsPagingAdapter.OnItemClickListener{
+class TopHeadlinesFragment : Fragment(), NewsPagingAdapter.OnItemClickListener {
 
-    private  val topHeadlinesViewModel by viewModels<TopHeadlinesViewModel>()
+    private val topHeadlinesViewModel by viewModels<TopHeadlinesViewModel>()
 
     private var _binding: FragmentTopheadlinesBinding? = null
 
     private val binding get() = _binding!!
 
+    private var searching: Boolean = false
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
 
 
         _binding = FragmentTopheadlinesBinding.inflate(inflater, container, false)
 
-        val toolbar: androidx.appcompat.widget.Toolbar=binding.toolBar
+        val toolbar: androidx.appcompat.widget.Toolbar = binding.toolBar
         (requireActivity() as AppCompatActivity).setSupportActionBar(toolbar)
         val root: View = binding.root
         return root
     }
 
 
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         setHasOptionsMenu(true)
-        val adapter=NewsPagingAdapter(this)
+        val adapter = NewsPagingAdapter(this)
 
         binding.apply {
             rvTopheadlines.setHasFixedSize(true)
-            rvTopheadlines.adapter=adapter.withLoadStateHeaderAndFooter(
+            rvTopheadlines.adapter = adapter.withLoadStateHeaderAndFooter(
 
-                header = LoadingStateAdapter{
+                header = LoadingStateAdapter {
                     adapter.retry()
                 },
-                footer = LoadingStateAdapter{
+                footer = LoadingStateAdapter {
                     adapter.retry()
                 },
             )
+            adapter.addLoadStateListener {
+
+                binding.apply {
+                    if (adapter.itemCount == 0 && searching) {
+                        noDataLottie.isVisible = true
+                        tvHeadlines.text = "We could not find news.."
+                    } else if (adapter.itemCount == 0) {
+                        searchingLottie.isVisible = true
+                        tvHeadlines.text = "Finding Top News For You.."
+                    } else {
+                        noDataLottie.isVisible = false
+                        searchingLottie.isVisible = false
+                        tvHeadlines.text = "Top Headlines"
+
+                    }
+                }
+
+
+            }
 
         }
         topHeadlinesViewModel.news.observe(viewLifecycleOwner, Observer {
-          adapter.submitData(viewLifecycleOwner.lifecycle,it)
+
+            adapter.submitData(viewLifecycleOwner.lifecycle, it)
 
         })
 
     }
 
     override fun onItemClick(news: NewsData.Articles) {
-        val action=TopHeadlinesFragmentDirections.actionNavigationHomeToNewsDetailsFragment(news)
+        val action = TopHeadlinesFragmentDirections.actionNavigationHomeToNewsDetailsFragment(news)
         findNavController().navigate(action)
 
     }
-    override fun onCreateOptionsMenu(menu: Menu,inflater:MenuInflater) {
-        super.onCreateOptionsMenu(menu,inflater)
-        inflater.inflate(R.menu.search_bar_menu,menu)
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.search_bar_menu, menu)
 
 
-
-        val search=menu.findItem(R.id.nav_search)
-        val searchView=search?.actionView as SearchView
-        searchView.queryHint=" Search News"
+        val search = menu.findItem(R.id.nav_search)
+        val searchView = search?.actionView as SearchView
+        searchView.queryHint = " Search News"
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
 
-                if(query!=null)
-                {   binding.rvTopheadlines.scrollToPosition(0)
+                if (query != null) {
+                    searching = true
+                    binding.rvTopheadlines.scrollToPosition(0)
                     topHeadlinesViewModel.getTopHeadlines(query)
                     searchView.clearFocus()
 
                 }
+
                 return true
             }
 
@@ -101,10 +120,8 @@ class TopHeadlinesFragment : Fragment() ,NewsPagingAdapter.OnItemClickListener{
             }
         })
 
+
     }
-
-
-
 
 
     override fun onDestroyView() {
