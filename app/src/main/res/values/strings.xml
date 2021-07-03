@@ -6,4 +6,8 @@
     <string name="title_activity_splash_screen">GNews</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="string_nonews">We could not find news..</string>
+    <string name="string_findingnews">Finding Top News For You..</string>
+    <string name="string_topheadlines">Top Headlines</string>
+    <string name="string_Author">\"Author: \"</string>
 </resources>

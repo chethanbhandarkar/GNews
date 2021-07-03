@@ -7,7 +7,6 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.chethanbhandarkar.gnews.R
 import com.chethanbhandarkar.gnews.data.repository.NewsData
@@ -35,8 +34,7 @@ class TopHeadlinesFragment : Fragment(), NewsPagingAdapter.OnItemClickListener {
 
         val toolbar: androidx.appcompat.widget.Toolbar = binding.toolBar
         (requireActivity() as AppCompatActivity).setSupportActionBar(toolbar)
-        val root: View = binding.root
-        return root
+        return binding.root
     }
 
 
@@ -62,14 +60,14 @@ class TopHeadlinesFragment : Fragment(), NewsPagingAdapter.OnItemClickListener {
                 binding.apply {
                     if (adapter.itemCount == 0 && searching) {
                         noDataLottie.isVisible = true
-                        tvHeadlines.text = "We could not find news.."
+                        tvHeadlines.text = getString(R.string.string_nonews)
                     } else if (adapter.itemCount == 0) {
                         searchingLottie.isVisible = true
-                        tvHeadlines.text = "Finding Top News For You.."
+                        tvHeadlines.text = getString(R.string.string_findingnews)
                     } else {
                         noDataLottie.isVisible = false
                         searchingLottie.isVisible = false
-                        tvHeadlines.text = "Top Headlines"
+                        tvHeadlines.text = getString(R.string.string_topheadlines)
 
                     }
                 }
@@ -78,7 +76,7 @@ class TopHeadlinesFragment : Fragment(), NewsPagingAdapter.OnItemClickListener {
             }
 
         }
-        topHeadlinesViewModel.news.observe(viewLifecycleOwner, Observer {
+        topHeadlinesViewModel.news.observe(viewLifecycleOwner,{
 
             adapter.submitData(viewLifecycleOwner.lifecycle, it)
 

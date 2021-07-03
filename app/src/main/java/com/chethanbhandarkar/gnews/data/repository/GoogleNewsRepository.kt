@@ -1,9 +1,8 @@
 package com.chethanbhandarkar.gnews.data.repository
 
-import android.util.Log
+
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import androidx.paging.cachedIn
 import androidx.paging.liveData
 import com.chethanbhandarkar.gnews.data.repository.pagination.GoogleNewsPagingSource
 import com.chethanbhandarkar.gnews.data.repository.remote.GoogleNewsApiService
