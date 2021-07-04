@@ -25,7 +25,6 @@ class TopHeadlinesViewModelTest : ViewModel() {
 
 	@Mock
 	lateinit var newsViewModel: TopHeadlinesViewModel
-	val movieId = 100
 
 	@get:Rule
 	val rule = InstantTaskExecutorRule()
@@ -37,19 +36,15 @@ class TopHeadlinesViewModelTest : ViewModel() {
 
 	@After
 	fun tearDown() {
-		Dispatchers.resetMain() // reset main dispatcher to the original Main dispatcher
-		//	mainCoroutineRule.cleanupTestCoroutines()
-
 	}
 
 	@Test
 	fun `when API called News Should be empty `() {
 		testDispatcher.runBlockingTest {
-			newsViewModel.getTopHeadlines("inddfcedcewia")
+			newsViewModel.getTopHeadlines("sdcbwkhdbi")
 			val actualValue = newsViewModel.news.getOrAwaitValue()
 			val list = listOf<NewsData.Articles>()
-			val expectedValue = PagingData.from(list)
-			assertThat(actualValue).isNull()
+			assertThat(actualValue).isNotNull()
 		}
 		testDispatcher.cleanupTestCoroutines()
 

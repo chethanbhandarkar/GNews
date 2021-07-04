@@ -10,10 +10,7 @@ import java.io.IOException
 import javax.inject.Inject
 
 class FakeGoogleNewsRepositoryTest @Inject constructor(private val googleNewsApiService: GoogleNewsApiService):GoogleNewsRepositoryInterface{
-	//private val newsItems= PagingData<NewsData.Articles>()
 
-//	private val observableNewsItems= MutableLiveData<PagingData<NewsData.Articles>>(newsItems)
-//	private val ld:LiveData<PagingData<NewsData.Articles>>get()=observableNewsItems
 	override fun getSearchResults(query: String?): LiveData<PagingData<NewsData.Articles>> {
 		return Pager(
 			config = PagingConfig(

@@ -1,7 +1,6 @@
 package com.chethanbhandarkar.gnews.data.repository.pagination
 
-import androidx.paging.ItemKeyedDataSource
-import androidx.paging.Pager
+
 import androidx.paging.PagingSource
 import com.chethanbhandarkar.gnews.data.repository.NewsData
 import com.chethanbhandarkar.gnews.data.repository.pagination.remote.FakeApiImplementation

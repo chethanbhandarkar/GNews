@@ -16,7 +16,7 @@ class TopHeadlinesViewModel @ViewModelInject constructor(
 		repository.getSearchResults(queryString).cachedIn(viewModelScope)
 	}
 
-	fun getTopHeadlines(query: String) {
+	fun getTopHeadlines(query: String?) {
 		currentQuery.value = query
 
 	}
