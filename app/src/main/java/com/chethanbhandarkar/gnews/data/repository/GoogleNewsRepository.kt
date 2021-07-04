@@ -10,8 +10,8 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class GoogleNewsRepository @Inject constructor(private val googleNewsApi: GoogleNewsApiService) {
-	fun getSearchResults(query: String?) =
+class GoogleNewsRepository @Inject constructor(private val googleNewsApi: GoogleNewsApiService):GoogleNewsRepositoryInterface {
+	override fun getSearchResults(query: String?) =
 		Pager(
 			config = PagingConfig(
 				pageSize = 10,

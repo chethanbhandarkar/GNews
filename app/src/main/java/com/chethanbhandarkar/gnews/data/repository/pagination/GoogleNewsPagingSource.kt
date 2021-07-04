@@ -4,6 +4,7 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.chethanbhandarkar.gnews.data.repository.NewsData
 import com.chethanbhandarkar.gnews.data.repository.remote.GoogleNewsApiService
+import com.chethanbhandarkar.gnews.other.Resource
 import retrofit2.HttpException
 import java.io.IOException
 
@@ -37,6 +38,7 @@ class GoogleNewsPagingSource(
 
 		} catch (exception: IOException) {
 			LoadResult.Error(exception)
+			//Resource.error("Input Output Exception",null)
 
 		} catch (exception: HttpException) {
 			LoadResult.Error(exception)
