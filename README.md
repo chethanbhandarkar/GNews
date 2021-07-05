@@ -13,6 +13,10 @@ Top headlines /v2/top-headlines – returns breaking news headlines for countrie
 														
 ## Kotlin - Android - MVVM - Retrofit - Navigation - Pagination 3 - Coroutines - Dagger-Hilt- Lifecycle - Glide - Lottie - JUnit - Binding - Google Truth
 
+## Downloadable APK:
+
+https://drive.google.com/file/d/1qVigriTa6qVoNkSY7zNqh0VZjgbGHcJr/view?usp=sharing
+
 ## Light and Dark Theme
 <p float="left">
   <img src="https://user-images.githubusercontent.com/34742621/124395700-20463d00-dd23-11eb-853c-3a2d24af319c.jpg" width="185" />
