@@ -6,16 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".ui.dashboard.DashboardFragment">
 
-
-
-
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/underconstruction_lottie"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/underconstruction" />
-
-
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_dashboard_india"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/each_newsdata_type2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

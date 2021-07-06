@@ -26,6 +26,9 @@
         <action
             android:id="@+id/action_navigation_dashboard_to_navigation_home"
             app:destination="@id/navigation_home" />
+        <action
+            android:id="@+id/action_navigation_dashboard_to_newsDetailsFragment"
+            app:destination="@id/newsDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/newsDetailsFragment"
@@ -38,6 +41,9 @@
         <argument
             android:name="newsArticle"
             app:argType="com.chethanbhandarkar.gnews.data.repository.NewsData$Articles" />
+        <action
+            android:id="@+id/action_newsDetailsFragment_to_navigation_dashboard"
+            app:destination="@id/navigation_dashboard" />
     </fragment>
 
 </navigation>
