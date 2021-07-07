@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
             {
                 R.id.newsDetailsFragment->navView.visibility= View.GONE
                 R.id.navigation_home->navView.visibility=View.VISIBLE
+                R.id.webviewFragment->navView.visibility=View.GONE
                 else->navView.visibility=View.VISIBLE
             }
         }

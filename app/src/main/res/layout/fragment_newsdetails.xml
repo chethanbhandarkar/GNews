@@ -29,16 +29,39 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/iv_detailsimage"
+            <FrameLayout
+                android:id="@+id/framelayout"
                 android:layout_width="0dp"
-                android:layout_height="279dp"
-                android:scaleType="fitXY"
-                app:layout_constraintBottom_toTopOf="@id/tv_detailstitle"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@+id/tv_detailstitle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:src="@tools:sample/backgrounds/scenic" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/iv_detailsimage"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:contentDescription="di"
+                    android:scaleType="fitXY"
+                    tools:src="@tools:sample/backgrounds/scenic" />
+
+                <Button
+                    android:id="@+id/btn_moredetails"
+                    style="@style/Widget.AppCompat.Button.Small"
+                    android:layout_width="76dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="bottom|right"
+                    android:autoText="true"
+                    android:fontFamily="@font/lato_bold"
+                    android:gravity="center"
+                    android:text="Read More"
+                    android:textColor="#FFFFFF"
+                    android:textSize="7sp">
+
+                </Button>
+
+            </FrameLayout>
 
 
             <TextView
@@ -53,7 +76,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/tv_author"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/iv_detailsimage" />
+                app:layout_constraintTop_toBottomOf="@id/framelayout" />
 
             <TextView
                 android:id="@+id/tv_author"

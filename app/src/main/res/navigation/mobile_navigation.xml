@@ -12,10 +12,14 @@
         tools:layout="@layout/fragment_topheadlines" >
         <action
             android:id="@+id/action_navigation_home_to_newsDetailsFragment"
-            app:destination="@id/newsDetailsFragment" />
+            app:destination="@id/newsDetailsFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
         <action
             android:id="@+id/action_navigation_home_to_navigation_dashboard"
-            app:destination="@id/navigation_dashboard" />
+            app:destination="@id/navigation_dashboard"
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@android:anim/accelerate_decelerate_interpolator" />
     </fragment>
 
     <fragment
@@ -43,7 +47,24 @@
             app:argType="com.chethanbhandarkar.gnews.data.repository.NewsData$Articles" />
         <action
             android:id="@+id/action_newsDetailsFragment_to_navigation_dashboard"
-            app:destination="@id/navigation_dashboard" />
+            app:destination="@id/navigation_dashboard"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_in_left" />
+        <action
+            android:id="@+id/action_newsDetailsFragment_to_webviewFragment"
+            app:destination="@id/webviewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/webviewFragment"
+        android:name="com.chethanbhandarkar.gnews.ui.webview.WebviewFragment"
+        android:label="fragment_webview"
+        tools:layout="@layout/fragment_webview" >
+        <action
+            android:id="@+id/action_webviewFragment_to_newsDetailsFragment"
+            app:destination="@id/newsDetailsFragment" />
+        <argument
+            android:name="uRLstring"
+            app:argType="string" />
     </fragment>
 
 </navigation>

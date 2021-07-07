@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -14,6 +15,7 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.chethanbhandarkar.gnews.R
 import com.chethanbhandarkar.gnews.databinding.FragmentNewsdetailsBinding
+import com.chethanbhandarkar.gnews.ui.topheadlines.TopHeadlinesFragmentDirections
 
 class NewsDetailsFragment : Fragment() {
 	private val args by navArgs<NewsDetailsFragmentArgs>()
@@ -30,9 +32,9 @@ class NewsDetailsFragment : Fragment() {
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 		val binding = FragmentNewsdetailsBinding.bind(view)
+		val newsArticle = args.newsArticle
 
 		binding.apply {
-			val newsArticle = args.newsArticle
 
 			tvDetailstitle.text = newsArticle.title
 			tvDetailsdescription.text = newsArticle.description
@@ -62,11 +64,20 @@ class NewsDetailsFragment : Fragment() {
 						isFirstResource: Boolean
 					): Boolean {
 						progressBar.isVisible = false
+
 						return false
 					}
 
 				})
 				.into(ivDetailsimage)
+		}
+
+		binding.btnMoredetails.setOnClickListener {
+
+			val action=NewsDetailsFragmentDirections.actionNewsDetailsFragmentToWebviewFragment(newsArticle.url.toString())
+			findNavController().navigate(action)
+
+
 		}
 
 	}

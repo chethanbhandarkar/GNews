@@ -10,4 +10,6 @@
     <string name="string_findingnews">Finding Top News For You..</string>
     <string name="string_topheadlines">Top Headlines</string>
     <string name="string_Author">\"Author: \"</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
