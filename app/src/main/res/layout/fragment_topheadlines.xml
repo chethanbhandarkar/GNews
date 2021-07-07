@@ -11,7 +11,6 @@
         android:id="@+id/tool_bar"
         android:layout_width="0dp"
         android:layout_height="75dp"
-        app:layout_constraintBottom_toTopOf="@+id/tv_headlines"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,7 +19,7 @@
     </androidx.appcompat.widget.Toolbar>
 
     <TextView
-        android:id="@+id/tv_headlines"
+        android:id="@+id/tv_topheadlines"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_bold"
@@ -36,6 +35,18 @@
 
     </TextView>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_topheadlines"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_topheadlines"
+        tools:listitem="@layout/each_newsdata">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/no_data_lottie"
@@ -43,39 +54,26 @@
         android:layout_height="200dp"
 
         android:visibility="gone"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
         app:lottie_rawRes="@raw/nosearchresults" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/searching_lottie"
         android:layout_width="200dp"
         android:layout_height="200dp"
-
-        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/searchinglottie" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_topheadlines"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="1dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_headlines"
-        tools:listitem="@layout/each_newsdata" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

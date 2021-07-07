@@ -21,9 +21,17 @@ class TopHeadlinesViewModel @ViewModelInject constructor(
 
 	}
 
+
+
+
+
+
+
+
 	companion object {
 		private val DEFAULT_QUERY: String? = null
 		private val CURRENT_QUERY: String = "current_query"
+
 	}
 
 }

@@ -24,7 +24,8 @@ interface GoogleNewsApiService {
 		@Query("page") page: Int,
 		@Query("pageSize") pageSize: Int,
 		@Query("apiKey") apiKey: String = CLIENT_ID,
-		@Query("q") query: String
+		@Query("q") query: String,
+		@Query("sortBy")sort:String="publishedAt"
 	): NewsData
 
 }

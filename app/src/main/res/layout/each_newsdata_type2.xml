@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/each_data_cardview"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="15dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginEnd="15dp"
+    android:orientation="vertical"
+    app:cardCornerRadius="15dp"
+    app:cardElevation="15dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/iv_newsimage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.6"
+                    android:scaleType="fitXY"
+                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_margin="10dp"
+                    android:layout_weight="0.3"
+                    android:autoText="true"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/lato_bold"
+                    android:gravity="bottom|center|left"
+                    android:maxLines="3"
+                    android:text="Last US troops set to leave Bagram Air Base Friday, as US withdrawal from Afghanistan Last US troops set to leave Bagram Air Base Friday, as US withdrawal from Afghanistan nears completionnears completion"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    app:autoSizeTextType="none" />
+
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/tv_timepublished"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.1"
+                android:ellipsize="end"
+                android:fontFamily="@font/lato_bold"
+                android:gravity="center|left"
+                android:paddingLeft="3dp"
+                android:text="33 min ago"
+                android:textSize="8sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

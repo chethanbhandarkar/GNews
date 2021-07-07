@@ -1,5 +1,6 @@
 package com.chethanbhandarkar.gnews.ui.topheadlines
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
@@ -7,16 +8,20 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.navigation.NavController
+import androidx.navigation.NavigatorProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.chethanbhandarkar.gnews.R
 import com.chethanbhandarkar.gnews.data.repository.NewsData
 import com.chethanbhandarkar.gnews.databinding.FragmentTopheadlinesBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class TopHeadlinesFragment : Fragment(), NewsPagingAdapter.OnItemClickListener {
+class TopHeadlinesFragment : Fragment(),NewsPagingAdapter.onItemClickListenr {
 
-    private val topHeadlinesViewModel by viewModels<TopHeadlinesViewModel>()
+        private val topHeadlinesViewModel by viewModels<TopHeadlinesViewModel>()
 
     private var _binding: FragmentTopheadlinesBinding? = null
 
@@ -36,7 +41,6 @@ class TopHeadlinesFragment : Fragment(), NewsPagingAdapter.OnItemClickListener {
         (requireActivity() as AppCompatActivity).setSupportActionBar(toolbar)
         return binding.root
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -60,14 +64,14 @@ class TopHeadlinesFragment : Fragment(), NewsPagingAdapter.OnItemClickListener {
                 binding.apply {
                     if (adapter.itemCount == 0 && searching) {
                         noDataLottie.isVisible = true
-                        tvHeadlines.text = getString(R.string.string_nonews)
+                        tvTopheadlines.text = getString(R.string.string_nonews)
                     } else if (adapter.itemCount == 0) {
                         searchingLottie.isVisible = true
-                        tvHeadlines.text = getString(R.string.string_findingnews)
+                        tvTopheadlines.text = getString(R.string.string_findingnews)
                     } else {
                         noDataLottie.isVisible = false
                         searchingLottie.isVisible = false
-                        tvHeadlines.text = getString(R.string.string_topheadlines)
+                        tvTopheadlines.text = getString(R.string.string_topheadlines)
 
                     }
                 }
@@ -75,20 +79,37 @@ class TopHeadlinesFragment : Fragment(), NewsPagingAdapter.OnItemClickListener {
 
             }
 
-        }
-        topHeadlinesViewModel.news.observe(viewLifecycleOwner,{
 
+
+
+
+        }
+
+
+
+        topHeadlinesViewModel.news.observe(viewLifecycleOwner,{
             adapter.submitData(viewLifecycleOwner.lifecycle, it)
 
         })
 
     }
 
-    override fun onItemClick(news: NewsData.Articles) {
-        val action = TopHeadlinesFragmentDirections.actionNavigationHomeToNewsDetailsFragment(news)
-        findNavController().navigate(action)
+    //
 
-    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
@@ -127,5 +148,9 @@ class TopHeadlinesFragment : Fragment(), NewsPagingAdapter.OnItemClickListener {
         _binding = null
     }
 
+    override fun onItemClick(news: NewsData.Articles) {
+        val action=TopHeadlinesFragmentDirections.actionNavigationHomeToNewsDetailsFragment(news)
+        findNavController().navigate(action)
+    }
 
 }
